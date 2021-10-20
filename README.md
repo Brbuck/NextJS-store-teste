@@ -2,7 +2,7 @@
 
 # Sobre o Projeto
 
-Um e-commerce simples(parcial) para fins de estudo.
+Um e-commerce simples(parcial) consumindo uma API  para fins de estudo.
 
 ## Tecnologias
 
