@@ -1,4 +1,6 @@
 import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { Button, Container, DescriptionModal, CounterWrapper, Display, Image, ProductInfo } from '../../styles/SalePage'
 
 export default function Products({ id }) {
     const { isFallback } = useRouter()
@@ -7,14 +9,53 @@ export default function Products({ id }) {
         return <p>Carregando...</p>
     }
 
+    const [count, setCount] = useState(1);
+
+    const menos = () => {
+        setCount(count - 1)
+        if (count <= 1) {
+            setCount(count + 1)
+        }
+    }
+
+    const [modal, setModal] = useState(false);
+    const handleModal = () => {
+        setModal(!modal)
+    }
+
     return (
-        <div>
-            <img src={id.image_link} alt={id.name} width='200px' />
-            <p>{id.name}</p>
-            <p>Categoria: {id.category ? id.category : 'null'}</p>
-            <span>Preço: {id.price}</span>
-            <p>Descrição: {id.description}</p>
-        </div>
+        <>
+            <Container>
+                <Display>
+                    <Image src={id.image_link} alt={id.name} width='200px' />
+                    <ProductInfo>
+                        <h2>{id.name}</h2>
+                        <span>Cod: {id.brand}</span>
+                        <span> {id.name}</span>
+                        <CounterWrapper>
+                            <span>QTD</span>
+                            <div>
+                                <div onClick={menos}>-</div>
+                                <div>{count}</div>
+                                <div onClick={() => setCount(count + 1)}>+</div>
+                            </div>
+                        </CounterWrapper>
+                        <span>$ {id.price}</span>
+                        <Button>Buy</Button>
+                        <span onClick={handleModal} >Description</span>
+                    </ProductInfo>
+                </Display>
+            </Container>
+            {modal ?
+                <DescriptionModal onClick={handleModal}>
+                    <div>
+                        <p>{id.description}</p>
+                        <button onClick={handleModal}>X</button>
+                    </div>
+                </DescriptionModal>
+                : null
+            }
+        </>
     )
 }
 
