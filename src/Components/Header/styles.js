@@ -29,6 +29,10 @@ export const Navbar = styled.nav`
         &:hover{
             color: #111;
         }
+
+        @media screen and (max-width: 560px){
+            font-size: 1rem;
+        }
     }
 
 `
