@@ -13,5 +13,5 @@ Um e-commerce simples(parcial) consumindo uma API  para fins de estudo.
 # Como executar o projeto
 
 1. `npm install` ou `yarn install`.
-2. `npm start` ou `yarn start` e acesse `http://localhost:3000`
+2. `npm run dev` ou `yarn dev` e acesse `http://localhost:3000`
    
